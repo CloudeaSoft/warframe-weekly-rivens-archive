@@ -1,0 +1,19 @@
+{
+  "name": "warframe-weekly-rivens-history",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.6.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "fetch:latest": "pnpm run build && node dist/scripts/fetch_latest_weekly_rivens/fetch_latest_weekly_rivens.js",
+    "test": "pnpm run build && node --test dist/scripts/fetch_latest_weekly_rivens/test_fetch_latest_weekly_rivens.js"
+  },
+  "dependencies": {
+    "json5": "^2.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.0",
+    "typescript": "^5.8.2"
+  }
+}

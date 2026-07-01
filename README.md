@@ -14,6 +14,7 @@ SWITCH: Updated weekly based on the prior week's trades: https://www-static.warf
 ## Scripts
 
 - [Fetch from Wayback Machine](scripts/fetch_from_wayback_machine/README.md) - Fetch archived weekly Riven data without overwriting existing files.
+- [Fetch latest weekly Rivens](scripts/fetch_latest_weekly_rivens/README.md) - Fetch current official weekly Riven data and save only new content.
 
 ## Acknowledgments
 
