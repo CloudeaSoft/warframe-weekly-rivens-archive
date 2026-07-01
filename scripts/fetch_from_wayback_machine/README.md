@@ -7,7 +7,7 @@ Fetch historical Warframe weekly Riven data snapshots from the Internet Archive 
 Run from the repository root:
 
 ```powershell
-py scripts\fetch_from_wayback_machine\fetch_from_wayback_machine.py
+pnpm run fetch:wayback
 ```
 
 By default, the script fetches all supported platforms:
@@ -20,16 +20,16 @@ By default, the script fetches all supported platforms:
 To fetch specific platforms only, pass one or more platform suffixes:
 
 ```powershell
-py scripts\fetch_from_wayback_machine\fetch_from_wayback_machine.py PC PS4
+pnpm run build && node dist/scripts/fetch_from_wayback_machine/fetch_from_wayback_machine.js PC PS4
 ```
 
-If Python reports a local TLS certificate verification error, for example `CERTIFICATE_VERIFY_FAILED`, and you trust your current network, rerun with:
+If Node reports a local TLS certificate verification error, for example `CERTIFICATE_VERIFY_FAILED`, and you trust your current network, rerun with:
 
 ```powershell
-py scripts\fetch_from_wayback_machine\fetch_from_wayback_machine.py --insecure
+pnpm run build && node dist/scripts/fetch_from_wayback_machine/fetch_from_wayback_machine.js --insecure
 ```
 
-This disables HTTPS certificate verification for the script run. Prefer fixing the local Python certificate store or proxy certificate chain when possible.
+This disables HTTPS certificate verification for the script run. Prefer fixing the local certificate store or proxy certificate chain when possible.
 
 ## Behavior
 
@@ -53,12 +53,12 @@ data/PC/2019_W13_weeklyRivensPC.json
 
 ## Requirements
 
-Python 3.10 or newer. The script uses only the Python standard library.
+Node.js 18 or newer with `pnpm`. Install dependencies with `pnpm install`.
 
 ## Tests
 
 Run from the repository root:
 
 ```powershell
-py -m unittest scripts.fetch_from_wayback_machine.test_fetch_from_wayback_machine
+pnpm test
 ```

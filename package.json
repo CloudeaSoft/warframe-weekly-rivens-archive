@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "fetch:latest": "pnpm run build && node dist/scripts/fetch_latest_weekly_rivens/fetch_latest_weekly_rivens.js",
-    "test": "pnpm run build && node --test dist/scripts/fetch_latest_weekly_rivens/test_fetch_latest_weekly_rivens.js"
+    "fetch:wayback": "pnpm run build && node dist/scripts/fetch_from_wayback_machine/fetch_from_wayback_machine.js",
+    "test": "pnpm run build && node --test dist/scripts/fetch_latest_weekly_rivens/test_fetch_latest_weekly_rivens.js dist/scripts/fetch_from_wayback_machine/test_fetch_from_wayback_machine.js"
   },
   "dependencies": {
     "json5": "^2.2.3"

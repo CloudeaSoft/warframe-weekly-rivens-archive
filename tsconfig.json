@@ -18,6 +18,7 @@
     ]
   },
   "include": [
-    "scripts/fetch_latest_weekly_rivens/**/*.ts"
+    "scripts/fetch_latest_weekly_rivens/**/*.ts",
+    "scripts/fetch_from_wayback_machine/**/*.ts"
   ]
 }
