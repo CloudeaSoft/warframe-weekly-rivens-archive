@@ -11,6 +11,10 @@ PS4: Updated weekly based on the prior week's trades: https://www-static.warfram
 XB1: Updated weekly based on the prior week's trades: https://www-static.warframe.com/repos/weeklyRivensXB1.json
 SWITCH: Updated weekly based on the prior week's trades: https://www-static.warframe.com/repos/weeklyRivensSWI.json
 
+## Scripts
+
+- [Fetch from Wayback Machine](scripts/fetch_from_wayback_machine/README.md) - Fetch archived weekly Riven data without overwriting existing files.
+
 ## Acknowledgments
 
 This project stands on the shoulders of giants. Special thanks to the following open-source projects:
