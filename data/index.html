@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Warframe Weekly Rivens History</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7fa;
+        --panel: #ffffff;
+        --text: #17202a;
+        --muted: #5b6472;
+        --line: #d9dee7;
+        --accent: #1d6fdc;
+        --accent-soft: #e8f1ff;
+        --green: #13795b;
+        --green-soft: #e6f5ef;
+        --amber: #9a6700;
+        --amber-soft: #fff3c4;
+        --shadow: 0 8px 24px rgb(23 32 42 / 8%);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--bg);
+        color: var(--text);
+        font: 15px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        letter-spacing: 0;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      code {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #f8fafc;
+        padding: 2px 6px;
+        color: #10233f;
+        font: 13px/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        overflow-wrap: anywhere;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 48px;
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+        gap: 20px;
+        align-items: end;
+        margin-bottom: 20px;
+      }
+
+      .eyebrow {
+        margin: 0 0 6px;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 8px;
+        font-size: clamp(28px, 5vw, 44px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        font-size: 20px;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 720px;
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .base-box,
+      .panel,
+      .platform-card,
+      .file-row,
+      .notice {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      .base-box {
+        padding: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .base-box code {
+        display: block;
+        width: 100%;
+      }
+
+      .quick-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .quick-links a,
+      .pill {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--panel);
+        padding: 6px 12px;
+        font-weight: 650;
+        white-space: nowrap;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+
+      .platform-card {
+        min-height: 128px;
+        padding: 16px;
+        box-shadow: var(--shadow);
+      }
+
+      .metric {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+
+      .metric strong {
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .metric span,
+      .meta {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .latest-link {
+        display: inline-flex;
+        max-width: 100%;
+        margin-top: 10px;
+        align-items: center;
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .panel {
+        margin-bottom: 20px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .usage-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .example {
+        margin: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #f8fafc;
+        padding: 12px;
+        overflow-x: auto;
+        color: #10233f;
+        font: 13px/1.55 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: 180px minmax(180px, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      select,
+      input {
+        width: 100%;
+        min-height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #ffffff;
+        color: var(--text);
+        font: inherit;
+      }
+
+      select {
+        padding: 0 10px;
+      }
+
+      input {
+        padding: 8px 11px;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: var(--accent);
+        outline: 3px solid var(--accent-soft);
+      }
+
+      .file-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .file-row {
+        display: grid;
+        grid-template-columns: 64px 104px minmax(0, 1fr);
+        min-height: 46px;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px;
+      }
+
+      .tag {
+        display: inline-flex;
+        width: max-content;
+        min-width: 48px;
+        min-height: 26px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: #174f9f;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .week {
+        color: var(--muted);
+        font-weight: 650;
+      }
+
+      .file-row a {
+        overflow-wrap: anywhere;
+        font-weight: 650;
+      }
+
+      .notice {
+        padding: 14px;
+        background: var(--amber-soft);
+        color: #4a3500;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @media (max-width: 900px) {
+        .topbar,
+        .usage-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100% - 20px, 1120px);
+          padding-top: 22px;
+        }
+
+        .grid,
+        .controls {
+          grid-template-columns: 1fr;
+        }
+
+        .file-row {
+          grid-template-columns: 56px minmax(0, 1fr);
+          gap: 8px;
+        }
+
+        .file-row a {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Cloudflare Pages CDN</p>
+          <h1>Warframe Weekly Rivens History</h1>
+          <p class="lead">
+            Static JSON snapshots of Warframe's official weekly Riven trading data.
+            Use the indexes below to discover available platforms and weeks.
+          </p>
+        </div>
+        <div class="base-box" aria-label="CDN base URL">
+          <span class="label">Base URL</span>
+          <code id="base-url">https://warframe-weekly-rivens-history.pages.dev</code>
+        </div>
+      </header>
+
+      <nav class="quick-links" aria-label="Index files">
+        <a href="dates.json">dates.json</a>
+        <a href="coverage.json">coverage.json</a>
+        <a href="PC/">PC</a>
+        <a href="PS4/">PS4</a>
+        <a href="XB1/">XB1</a>
+        <a href="SWI/">SWI</a>
+      </nav>
+
+      <section id="status" class="notice" role="status">Loading index data...</section>
+
+      <section id="summary" class="grid hidden" aria-label="Platform summary"></section>
+
+      <section class="panel">
+        <h2>URL format</h2>
+        <div class="usage-grid">
+          <pre class="example" id="index-example"></pre>
+          <pre class="example" id="file-example"></pre>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Files</h2>
+        <div class="controls">
+          <label>
+            <span class="label">Platform</span>
+            <select id="platform-filter">
+              <option value="all">All platforms</option>
+            </select>
+          </label>
+          <label>
+            <span class="label">Week filter</span>
+            <input id="week-filter" type="search" placeholder="Example: 2026_W27" autocomplete="off">
+          </label>
+        </div>
+        <div id="file-list" class="file-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script>
+      const DEFAULT_BASE_URL = "https://warframe-weekly-rivens-history.pages.dev";
+      const PLATFORM_LABELS = {
+        PC: "PC",
+        PS4: "PlayStation",
+        XB1: "Xbox",
+        SWI: "Switch",
+      };
+
+      const state = {
+        dates: {},
+        coverage: {},
+        platform: "all",
+        weekQuery: "",
+      };
+
+      function getBaseUrl() {
+        if (window.location.origin && window.location.origin !== "null") {
+          return window.location.origin;
+        }
+
+        return DEFAULT_BASE_URL;
+      }
+
+      function fileName(platform, week) {
+        return `${week}_weeklyRivens${platform}.json`;
+      }
+
+      function filePath(platform, week) {
+        return `${platform}/${fileName(platform, week)}`;
+      }
+
+      function platformKeys() {
+        return Object.keys(state.dates).sort((a, b) => a.localeCompare(b));
+      }
+
+      function formatDate(value) {
+        if (!value) {
+          return "Unknown update time";
+        }
+
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) {
+          return value;
+        }
+
+        return date.toLocaleString(undefined, {
+          dateStyle: "medium",
+          timeStyle: "short",
+        });
+      }
+
+      function setStatus(message, isError = false) {
+        const status = document.querySelector("#status");
+        status.textContent = message;
+        status.classList.toggle("hidden", !message);
+        status.style.background = isError ? "#fde8e8" : "var(--amber-soft)";
+        status.style.color = isError ? "#6b1111" : "#4a3500";
+      }
+
+      function renderExamples() {
+        const baseUrl = getBaseUrl();
+        document.querySelector("#base-url").textContent = baseUrl;
+        document.querySelector("#index-example").textContent = [
+          `${baseUrl}/dates.json`,
+          `${baseUrl}/coverage.json`,
+        ].join("\n");
+        document.querySelector("#file-example").textContent = [
+          `${baseUrl}/<platform>/<week>_weeklyRivens<platform>.json`,
+          `${baseUrl}/PC/2026_W27_weeklyRivensPC.json`,
+        ].join("\n");
+      }
+
+      function renderPlatformOptions() {
+        const select = document.querySelector("#platform-filter");
+        for (const platform of platformKeys()) {
+          const option = document.createElement("option");
+          option.value = platform;
+          option.textContent = PLATFORM_LABELS[platform] || platform;
+          select.append(option);
+        }
+      }
+
+      function renderSummary() {
+        const summary = document.querySelector("#summary");
+        summary.replaceChildren();
+
+        for (const platform of platformKeys()) {
+          const coverage = state.coverage.platforms?.[platform] || {};
+          const weeks = state.dates[platform] || [];
+          const latestWeek = coverage.latestWeek || weeks.at(-1) || "";
+          const card = document.createElement("article");
+          card.className = "platform-card";
+
+          const title = document.createElement("h3");
+          title.textContent = PLATFORM_LABELS[platform] || platform;
+
+          const metric = document.createElement("div");
+          metric.className = "metric";
+          const count = document.createElement("strong");
+          count.textContent = String(coverage.fileCount || weeks.length);
+          const label = document.createElement("span");
+          label.textContent = "files";
+          metric.append(count, label);
+
+          const meta = document.createElement("div");
+          meta.className = "meta";
+          meta.textContent = `Latest: ${latestWeek || "Unknown"}`;
+
+          const updated = document.createElement("div");
+          updated.className = "meta";
+          updated.textContent = formatDate(coverage.lastUpdatedTime);
+
+          card.append(title, metric, meta, updated);
+
+          if (latestWeek) {
+            const link = document.createElement("a");
+            link.className = "latest-link";
+            link.href = filePath(platform, latestWeek);
+            link.textContent = "Open latest file";
+            card.append(link);
+          }
+
+          summary.append(card);
+        }
+
+        summary.classList.remove("hidden");
+      }
+
+      function renderFiles() {
+        const list = document.querySelector("#file-list");
+        const query = state.weekQuery.trim().toLowerCase();
+        const selectedPlatforms = state.platform === "all" ? platformKeys() : [state.platform];
+        let visibleCount = 0;
+        list.replaceChildren();
+
+        for (const platform of selectedPlatforms) {
+          const weeks = [...(state.dates[platform] || [])].reverse();
+          for (const week of weeks) {
+            if (query && !week.toLowerCase().includes(query)) {
+              continue;
+            }
+
+            visibleCount += 1;
+            const row = document.createElement("div");
+            row.className = "file-row";
+
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.textContent = platform;
+
+            const weekLabel = document.createElement("span");
+            weekLabel.className = "week";
+            weekLabel.textContent = week;
+
+            const link = document.createElement("a");
+            link.href = filePath(platform, week);
+            link.textContent = fileName(platform, week);
+
+            row.append(tag, weekLabel, link);
+            list.append(row);
+          }
+        }
+
+        if (!visibleCount) {
+          const empty = document.createElement("div");
+          empty.className = "notice";
+          empty.textContent = "No files match the current filter.";
+          list.append(empty);
+        }
+      }
+
+      async function loadIndexData() {
+        renderExamples();
+
+        try {
+          const [datesResponse, coverageResponse] = await Promise.all([
+            fetch("dates.json", { cache: "no-cache" }),
+            fetch("coverage.json", { cache: "no-cache" }),
+          ]);
+
+          if (!datesResponse.ok) {
+            throw new Error(`dates.json returned ${datesResponse.status}`);
+          }
+
+          if (!coverageResponse.ok) {
+            throw new Error(`coverage.json returned ${coverageResponse.status}`);
+          }
+
+          state.dates = await datesResponse.json();
+          state.coverage = await coverageResponse.json();
+
+          renderPlatformOptions();
+          renderSummary();
+          renderFiles();
+          setStatus("");
+        } catch (error) {
+          setStatus(`Could not load index data: ${error.message}`, true);
+        }
+      }
+
+      document.querySelector("#platform-filter").addEventListener("change", (event) => {
+        state.platform = event.target.value;
+        renderFiles();
+      });
+
+      document.querySelector("#week-filter").addEventListener("input", (event) => {
+        state.weekQuery = event.target.value;
+        renderFiles();
+      });
+
+      loadIndexData();
+    </script>
+  </body>
+</html>
