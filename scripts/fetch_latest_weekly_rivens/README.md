@@ -37,7 +37,6 @@ pnpm run fetch:latest -- PC PS4
 - Compares fetched JSON against the latest saved file for each platform.
 - Skips a platform when the fetched JSON is unchanged.
 - Writes a new file when the fetched JSON differs.
-- Updates `data/dates.json` after writing new files.
 
 Normal weekly files use this naming pattern:
 
@@ -56,14 +55,6 @@ Example:
 ```text
 data/PC/2026_W30_weeklyRivensPC.json
 data/PC/2026_W30_20260701T060000Z_weeklyRivensPC.json
-```
-
-`data/dates.json` stores the same file keys:
-
-```json
-{
-  "PC": ["2026_W30", "2026_W30_20260701T060000Z"]
-}
 ```
 
 ## GitHub Actions

@@ -16,14 +16,8 @@ export interface FetchResult {
   filePath: string;
 }
 
-export interface DateIndexEntry {
-  platform: Platform;
-  key: string;
-}
-
 export interface FetchAndStoreOptions {
   dataDir: string;
-  datesPath: string;
   platform: Platform;
   now?: Date;
   fetchText?: (url: string) => Promise<string>;
@@ -33,7 +27,6 @@ export interface RunOptions {
   argv?: string[];
   cwd?: string;
   dataDir?: string;
-  datesPath?: string;
   now?: Date;
   fetchText?: (url: string) => Promise<string>;
 }
@@ -42,11 +35,10 @@ const TARGET_URL_TEMPLATE = "https://www-static.warframe.com/repos/weeklyRivens{
 const FILE_KEY_RE = /^(\d{4})_W(\d{2})(?:_(\d{8}T\d{6}Z))?$/;
 const RIVEN_FILE_RE = /^(\d{4}_W\d{2}(?:_\d{8}T\d{6}Z)?)_weeklyRivens(PC|PS4|XB1|SWI)\.json$/;
 
-export function projectDataPaths(cwd: string): { dataDir: string; datesPath: string } {
+export function projectDataPaths(cwd: string): { dataDir: string } {
   const dataDir = join(cwd, "data");
   return {
     dataDir,
-    datesPath: join(dataDir, "dates.json"),
   };
 }
 
@@ -137,24 +129,6 @@ export function filePathForKey(dataDir: string, platform: Platform, key: string)
   return join(dataDir, platform, `${key}_weeklyRivens${platform}.json`);
 }
 
-async function readDatesIndex(datesPath: string): Promise<Record<Platform, string[]>> {
-  if (!existsSync(datesPath)) {
-    return Object.fromEntries(VALID_PLATFORMS.map((platform) => [platform, []])) as unknown as Record<
-      Platform,
-      string[]
-    >;
-  }
-
-  const raw = JSON.parse(await readFile(datesPath, "utf8")) as Partial<Record<Platform, unknown>>;
-  const dates = {} as Record<Platform, string[]>;
-  for (const platform of VALID_PLATFORMS) {
-    const values = Array.isArray(raw[platform]) ? raw[platform] : [];
-    dates[platform] = [...new Set(values.map(String))].sort(compareFileKeys);
-  }
-
-  return dates;
-}
-
 async function scanPlatformKeys(dataDir: string, platform: Platform): Promise<string[]> {
   const platformDir = join(dataDir, platform);
   if (!existsSync(platformDir)) {
@@ -171,10 +145,9 @@ async function scanPlatformKeys(dataDir: string, platform: Platform): Promise<st
   });
 }
 
-async function latestSavedKey(dataDir: string, datesPath: string, platform: Platform): Promise<string | null> {
-  const dates = await readDatesIndex(datesPath);
+async function latestSavedKey(dataDir: string, platform: Platform): Promise<string | null> {
   const scannedKeys = await scanPlatformKeys(dataDir, platform);
-  const keys = [...new Set([...(dates[platform] ?? []), ...scannedKeys])].sort(compareFileKeys);
+  const keys = [...new Set(scannedKeys)].sort(compareFileKeys);
 
   return keys.at(-1) ?? null;
 }
@@ -195,24 +168,6 @@ async function nextOutputKey(dataDir: string, platform: Platform, now: Date): Pr
   }
 }
 
-export async function updateDatesIndex(datesPath: string, entries: DateIndexEntry[]): Promise<boolean> {
-  const dates = await readDatesIndex(datesPath);
-  const before = JSON.stringify(dates);
-
-  for (const { platform, key } of entries) {
-    dates[platform] = [...new Set([...(dates[platform] ?? []), key])].sort(compareFileKeys);
-  }
-
-  const after = JSON.stringify(dates);
-  if (after === before) {
-    return false;
-  }
-
-  await mkdir(dirname(datesPath), { recursive: true });
-  await writeFile(datesPath, `${JSON.stringify(dates, null, 2)}\n`);
-  return true;
-}
-
 async function defaultFetchText(url: string): Promise<string> {
   const response = await fetch(url, {
     headers: {
@@ -229,14 +184,13 @@ async function defaultFetchText(url: string): Promise<string> {
 
 export async function fetchAndStorePlatform({
   dataDir,
-  datesPath,
   platform,
   now = new Date(),
   fetchText = defaultFetchText,
 }: FetchAndStoreOptions): Promise<FetchResult> {
   const fetchedText = await fetchText(targetUrlForPlatform(platform));
   const normalizedFetchedText = normalizeJsonText(fetchedText);
-  const latestKey = await latestSavedKey(dataDir, datesPath, platform);
+  const latestKey = await latestSavedKey(dataDir, platform);
 
   if (latestKey !== null) {
     const latestPath = filePathForKey(dataDir, platform, latestKey);
@@ -252,7 +206,6 @@ export async function fetchAndStorePlatform({
   const outputPath = filePathForKey(dataDir, platform, outputKey);
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, normalizedFetchedText);
-  await updateDatesIndex(datesPath, [{ platform, key: outputKey }]);
 
   return { status: "saved", platform, key: outputKey, filePath: outputPath };
 }
@@ -286,7 +239,6 @@ export async function run({
   argv = process.argv.slice(2),
   cwd = process.cwd(),
   dataDir = projectDataPaths(cwd).dataDir,
-  datesPath = projectDataPaths(cwd).datesPath,
   now = new Date(),
   fetchText = defaultFetchText,
 }: RunOptions = {}): Promise<FetchResult[]> {
@@ -298,7 +250,7 @@ export async function run({
 
   const results: FetchResult[] = [];
   for (const platform of args.platforms) {
-    const result = await fetchAndStorePlatform({ dataDir, datesPath, platform, now, fetchText });
+    const result = await fetchAndStorePlatform({ dataDir, platform, now, fetchText });
     results.push(result);
     console.log(`[${platform}] ${result.status} ${result.key}`);
   }
