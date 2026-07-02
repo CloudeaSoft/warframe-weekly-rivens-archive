@@ -144,6 +144,7 @@
       }
 
       .quick-links a,
+      .quick-links button,
       .pill {
         display: inline-flex;
         min-height: 34px;
@@ -154,6 +155,18 @@
         padding: 6px 12px;
         font-weight: 650;
         white-space: nowrap;
+      }
+
+      .quick-links button {
+        color: var(--accent);
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .quick-links button[aria-pressed="true"] {
+        border-color: #9cc2ff;
+        background: var(--accent-soft);
+        color: #174f9f;
       }
 
       .grid {
@@ -350,12 +363,12 @@
       </header>
 
       <nav class="quick-links" aria-label="Index files">
-        <a href="dates.json">dates.json</a>
-        <a href="coverage.json">coverage.json</a>
-        <a href="PC/">PC</a>
-        <a href="PS4/">PS4</a>
-        <a href="XB1/">XB1</a>
-        <a href="SWI/">SWI</a>
+        <a href="/dates.json">dates.json</a>
+        <a href="/coverage.json">coverage.json</a>
+        <button type="button" data-platform-shortcut="PC" aria-pressed="false">PC</button>
+        <button type="button" data-platform-shortcut="PS4" aria-pressed="false">PS4</button>
+        <button type="button" data-platform-shortcut="XB1" aria-pressed="false">XB1</button>
+        <button type="button" data-platform-shortcut="SWI" aria-pressed="false">SWI</button>
       </nav>
 
       <section id="status" class="notice" role="status">Loading index data...</section>
@@ -417,7 +430,7 @@
       }
 
       function filePath(platform, week) {
-        return `${platform}/${fileName(platform, week)}`;
+        return `/${platform}/${fileName(platform, week)}`;
       }
 
       function platformKeys() {
@@ -469,6 +482,22 @@
           option.textContent = PLATFORM_LABELS[platform] || platform;
           select.append(option);
         }
+      }
+
+      function updatePlatformShortcuts() {
+        for (const button of document.querySelectorAll("[data-platform-shortcut]")) {
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.platformShortcut === state.platform),
+          );
+        }
+      }
+
+      function setPlatformFilter(platform) {
+        state.platform = platform;
+        document.querySelector("#platform-filter").value = platform;
+        updatePlatformShortcuts();
+        renderFiles();
       }
 
       function renderSummary() {
@@ -565,8 +594,8 @@
 
         try {
           const [datesResponse, coverageResponse] = await Promise.all([
-            fetch("dates.json", { cache: "no-cache" }),
-            fetch("coverage.json", { cache: "no-cache" }),
+            fetch("/dates.json", { cache: "no-cache" }),
+            fetch("/coverage.json", { cache: "no-cache" }),
           ]);
 
           if (!datesResponse.ok) {
@@ -581,6 +610,7 @@
           state.coverage = await coverageResponse.json();
 
           renderPlatformOptions();
+          updatePlatformShortcuts();
           renderSummary();
           renderFiles();
           setStatus("");
@@ -590,14 +620,19 @@
       }
 
       document.querySelector("#platform-filter").addEventListener("change", (event) => {
-        state.platform = event.target.value;
-        renderFiles();
+        setPlatformFilter(event.target.value);
       });
 
       document.querySelector("#week-filter").addEventListener("input", (event) => {
         state.weekQuery = event.target.value;
         renderFiles();
       });
+
+      for (const button of document.querySelectorAll("[data-platform-shortcut]")) {
+        button.addEventListener("click", () => {
+          setPlatformFilter(button.dataset.platformShortcut);
+        });
+      }
 
       loadIndexData();
     </script>
