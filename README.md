@@ -2,6 +2,31 @@
 
 Historical data for Warframe's official weekly Riven prices.
 
+## CDN access
+
+The `data` directory is deployed as a static Cloudflare Pages site:
+
+- Base URL: https://warframe-weekly-rivens-history.pages.dev
+- Directory page: https://warframe-weekly-rivens-history.pages.dev/
+- Dates index: https://warframe-weekly-rivens-history.pages.dev/dates.json
+- Coverage index: https://warframe-weekly-rivens-history.pages.dev/coverage.json
+
+Historical weekly files are available by platform and ISO week key:
+
+```text
+https://warframe-weekly-rivens-history.pages.dev/<platform>/<week>_weeklyRivens<platform>.json
+```
+
+Example:
+
+```text
+https://warframe-weekly-rivens-history.pages.dev/PC/2026_W27_weeklyRivensPC.json
+```
+
+Supported platform keys are `PC`, `PS4`, `XB1`, and `SWI`. Use `dates.json` to discover available weeks, and `coverage.json` for latest-week and coverage metadata.
+
+Cloudflare Pages publishes `data` as the output directory, so files under `data/` are served from the site root. CORS is enabled for all files. `dates.json` and `coverage.json` use `Cache-Control: no-cache` so clients can see new weekly indexes after deployment; platform data files use long immutable caching because historical week files are content-stable.
+
 ## Official data source
 
 Announced in official forum post [Riven Trading & Toolbuilders: Phase 1](https://forums.warframe.com/topic/1077490-riven-trading-toolbuilders-phase-1/).
