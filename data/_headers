@@ -1,0 +1,21 @@
+/*
+  Access-Control-Allow-Origin: *
+  X-Content-Type-Options: nosniff
+
+/dates.json
+  Cache-Control: no-cache
+
+/coverage.json
+  Cache-Control: no-cache
+
+/PC/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/PS4/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/XB1/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/SWI/*
+  Cache-Control: public, max-age=31536000, immutable
