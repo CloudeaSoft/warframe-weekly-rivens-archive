@@ -302,12 +302,12 @@
         "2026_W25",
         "2026_W26"
       ],
-      "lastUpdatedCommit": "42ba3ff527c3f3864796bc9ef58640582e1c4307",
-      "lastUpdatedTime": "2026-07-01T14:47:50+08:00"
+      "lastUpdatedCommit": "25b61d80410b1bbd0a9ab2ddb38fe840e27372f9",
+      "lastUpdatedTime": "2026-07-06T03:52:50Z"
     },
     "PS4": {
-      "latestWeek": "2026_W27",
-      "fileCount": 54,
+      "latestWeek": "2026_W28",
+      "fileCount": 55,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
