@@ -2,7 +2,7 @@ name: Fetch latest weekly Rivens
 
 on:
   schedule: # Official data is planned to auto-repopulate at 00:00 UTC Monday.
-    - cron: "0 1 * * *"
+    - cron: "17 1 * * *"
   workflow_dispatch:
 
 permissions:
@@ -54,5 +54,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data
-          git commit -m "ci(data): fetch latest weekly rivens"
+          commit_time="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git commit -m "ci(data): fetch latest weekly rivens at ${commit_time}"
           git push
