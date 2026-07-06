@@ -35,7 +35,30 @@ test("normalizeJsonText compares equivalent JSON independent of object key order
 test("normalizeJsonText parses Warframe object-literal payloads", () => {
   assert.equal(
     normalizeJsonText("[{ itemType: 'Archgun Riven Mod', compatibility: null }]"),
-    '[\n  {\n    "compatibility": null,\n    "itemType": "Archgun Riven Mod"\n  }\n]\n',
+    '[\n  {\n    "itemType": "Archgun Riven Mod",\n    "compatibility": null\n  }\n]\n',
+  );
+});
+
+test("normalizeJsonText writes riven fields in official schema order", () => {
+  assert.equal(
+    normalizeJsonText(
+      '[{"median":7,"pop":2,"max":12,"min":3,"stddev":4.5,"avg":8,"rerolled":false,"compatibility":"Braton","itemType":"Rifle Riven Mod"}]',
+    ),
+    '[\n  {\n    "itemType": "Rifle Riven Mod",\n    "compatibility": "Braton",\n    "rerolled": false,\n    "avg": 8,\n    "stddev": 4.5,\n    "min": 3,\n    "max": 12,\n    "pop": 2,\n    "median": 7\n  }\n]\n',
+  );
+});
+
+test("normalizeJsonText sorts riven entries by item name then rerolled state", () => {
+  assert.equal(
+    normalizeJsonText(
+      JSON.stringify([
+        { itemType: "Rifle Riven Mod", compatibility: "Braton", rerolled: true },
+        { itemType: "Rifle Riven Mod", compatibility: "Acceltra", rerolled: true },
+        { itemType: "Rifle Riven Mod", compatibility: "Acceltra", rerolled: false },
+        { itemType: "Melee Riven Mod", compatibility: null, rerolled: false },
+      ]),
+    ),
+    '[\n  {\n    "itemType": "Melee Riven Mod",\n    "compatibility": null,\n    "rerolled": false\n  },\n  {\n    "itemType": "Rifle Riven Mod",\n    "compatibility": "Acceltra",\n    "rerolled": false\n  },\n  {\n    "itemType": "Rifle Riven Mod",\n    "compatibility": "Acceltra",\n    "rerolled": true\n  },\n  {\n    "itemType": "Rifle Riven Mod",\n    "compatibility": "Braton",\n    "rerolled": true\n  }\n]\n',
   );
 });
 

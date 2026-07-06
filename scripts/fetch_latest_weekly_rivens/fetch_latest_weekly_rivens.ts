@@ -34,6 +34,17 @@ export interface RunOptions {
 const TARGET_URL_TEMPLATE = "https://www-static.warframe.com/repos/weeklyRivens{platform}.json";
 const FILE_KEY_RE = /^(\d{4})_W(\d{2})(?:_(\d{8}T\d{6}Z))?$/;
 const RIVEN_FILE_RE = /^(\d{4}_W\d{2}(?:_\d{8}T\d{6}Z)?)_weeklyRivens(PC|PS4|XB1|SWI)\.json$/;
+const RIVEN_FIELD_ORDER = [
+  "itemType",
+  "compatibility",
+  "rerolled",
+  "avg",
+  "stddev",
+  "min",
+  "max",
+  "pop",
+  "median",
+] as const;
 
 export function projectDataPaths(cwd: string): { dataDir: string } {
   const dataDir = join(cwd, "data");
@@ -68,17 +79,90 @@ export function revisionTimestamp(date: Date): string {
   return `${year}${month}${day}T${hour}${minute}${second}Z`;
 }
 
-function sortJsonValue(value: unknown): unknown {
-  if (Array.isArray(value)) {
-    return value.map(sortJsonValue);
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function compareStrings(left: string, right: string): number {
+  if (left < right) {
+    return -1;
+  }
+  if (left > right) {
+    return 1;
+  }
+  return 0;
+}
+
+function isRivenRecord(value: unknown): value is Record<string, unknown> {
+  return isRecord(value) && typeof value.itemType === "string";
+}
+
+function rivenSortName(value: Record<string, unknown>): string {
+  return typeof value.compatibility === "string" ? value.compatibility : String(value.itemType ?? "");
+}
+
+function compareRivenRecords(left: Record<string, unknown>, right: Record<string, unknown>): number {
+  const leftGeneric = left.compatibility === null || left.compatibility === undefined;
+  const rightGeneric = right.compatibility === null || right.compatibility === undefined;
+  if (leftGeneric !== rightGeneric) {
+    return leftGeneric ? -1 : 1;
   }
 
-  if (value !== null && typeof value === "object") {
-    const record = value as Record<string, unknown>;
+  const nameCompare = compareStrings(rivenSortName(left), rivenSortName(right));
+  if (nameCompare !== 0) {
+    return nameCompare;
+  }
+
+  if (left.rerolled !== right.rerolled) {
+    if (left.rerolled === false) {
+      return -1;
+    }
+    if (right.rerolled === false) {
+      return 1;
+    }
+  }
+
+  return compareStrings(String(left.itemType ?? ""), String(right.itemType ?? ""));
+}
+
+function orderObjectFields(record: Record<string, unknown>): Record<string, unknown> {
+  const knownKeys = RIVEN_FIELD_ORDER.filter((key) => Object.hasOwn(record, key));
+  const extraKeys = Object.keys(record)
+    .filter((key) => !RIVEN_FIELD_ORDER.includes(key as (typeof RIVEN_FIELD_ORDER)[number]))
+    .sort(compareStrings);
+
+  return Object.fromEntries(
+    [...knownKeys, ...extraKeys].map((key) => [key, normalizeOutputValue(record[key])]),
+  );
+}
+
+function normalizeOutputValue(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    const normalizedItems = value.map(normalizeOutputValue);
+    if (normalizedItems.every(isRivenRecord)) {
+      return [...normalizedItems].sort(compareRivenRecords);
+    }
+    return normalizedItems;
+  }
+
+  if (isRecord(value)) {
+    return orderObjectFields(value);
+  }
+
+  return value;
+}
+
+function canonicalJsonValue(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map(canonicalJsonValue);
+  }
+
+  if (isRecord(value)) {
+    const record = value;
     return Object.fromEntries(
       Object.keys(record)
-        .sort()
-        .map((key) => [key, sortJsonValue(record[key])]),
+        .sort(compareStrings)
+        .map((key) => [key, canonicalJsonValue(record[key])]),
     );
   }
 
@@ -86,7 +170,11 @@ function sortJsonValue(value: unknown): unknown {
 }
 
 export function normalizeJsonText(text: string): string {
-  return `${JSON.stringify(sortJsonValue(JSON5.parse(text)), null, 2)}\n`;
+  return `${JSON.stringify(normalizeOutputValue(JSON5.parse(text)), null, 2)}\n`;
+}
+
+function canonicalJsonText(text: string): string {
+  return `${JSON.stringify(canonicalJsonValue(JSON5.parse(text)), null, 2)}\n`;
 }
 
 interface ParsedFileKey {
@@ -195,8 +283,9 @@ export async function fetchAndStorePlatform({
   if (latestKey !== null) {
     const latestPath = filePathForKey(dataDir, platform, latestKey);
     if (existsSync(latestPath)) {
-      const normalizedLatestText = normalizeJsonText(await readFile(latestPath, "utf8"));
-      if (normalizedLatestText === normalizedFetchedText) {
+      const canonicalLatestText = canonicalJsonText(await readFile(latestPath, "utf8"));
+      const canonicalFetchedText = canonicalJsonText(fetchedText);
+      if (canonicalLatestText === canonicalFetchedText) {
         return { status: "unchanged", platform, key: latestKey, filePath: latestPath };
       }
     }
