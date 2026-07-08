@@ -238,7 +238,7 @@ async function nextOutputKey(dataDir: string, platform: Platform, now: Date): Pr
 async function defaultFetchText(url: string): Promise<string> {
   const response = await fetch(url, {
     headers: {
-      "user-agent": "warframe-weekly-rivens-history-fetcher/1.0",
+      "user-agent": "warframe-weekly-rivens-archive-fetcher/1.0",
     },
   });
 

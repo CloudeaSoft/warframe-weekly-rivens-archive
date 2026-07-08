@@ -387,7 +387,7 @@ function createDefaultFetchResponse(): FetchResponseFn {
     console.log(`request: ${decodeURIComponent(fullUrl)}`);
     const response = await fetch(fullUrl, {
       headers: {
-        "User-Agent": "warframe-weekly-rivens-history-fetcher/1.0",
+        "User-Agent": "warframe-weekly-rivens-archive-fetcher/1.0",
       },
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
