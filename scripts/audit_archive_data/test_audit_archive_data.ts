@@ -16,6 +16,17 @@ async function makeTempDataDir(): Promise<string> {
   return dataDir;
 }
 
+function emptyCoverage() {
+  return {
+    platforms: {
+      PC: { latestWeek: null, fileCount: 0, missingWeeks: [] },
+      PS4: { latestWeek: null, fileCount: 0, missingWeeks: [] },
+      XB1: { latestWeek: null, fileCount: 0, missingWeeks: [] },
+      SWI: { latestWeek: null, fileCount: 0, missingWeeks: [] },
+    },
+  };
+}
+
 test("auditArchiveData reports duplicate content for the same platform week", async () => {
   const dataDir = await makeTempDataDir();
   await writeFile(
@@ -29,6 +40,19 @@ test("auditArchiveData reports duplicate content for the same platform week", as
   await writeFile(
     join(dataDir, "dates.json"),
     `${JSON.stringify({ PC: ["2026_W28", "2026_W28_20260707T050620Z"], PS4: [], XB1: [], SWI: [] }, null, 2)}\n`,
+  );
+  await writeFile(
+    join(dataDir, "coverage.json"),
+    `${JSON.stringify(
+      {
+        platforms: {
+          ...emptyCoverage().platforms,
+          PC: { latestWeek: "2026_W28", fileCount: 2, missingWeeks: [] },
+        },
+      },
+      null,
+      2,
+    )}\n`,
   );
 
   const report = await auditArchiveData({ dataDir });
@@ -44,12 +68,38 @@ test("auditArchiveData reports dates index entries without data files", async ()
     join(dataDir, "dates.json"),
     `${JSON.stringify({ PC: ["2026_W28"], PS4: [], XB1: [], SWI: [] }, null, 2)}\n`,
   );
+  await writeFile(
+    join(dataDir, "coverage.json"),
+    `${JSON.stringify(emptyCoverage(), null, 2)}\n`,
+  );
 
   const report = await auditArchiveData({ dataDir });
 
   assert.equal(report.findings.length, 1);
   assert.equal(report.findings[0]?.severity, "error");
   assert.match(report.findings[0]?.message ?? "", /dates.json does not match/);
+});
+
+test("auditArchiveData reports coverage index entries that do not match data files", async () => {
+  const dataDir = await makeTempDataDir();
+  await writeFile(
+    join(dataDir, "PC", "2026_W28_weeklyRivensPC.json"),
+    '[{"itemType":"Rifle Riven Mod","compatibility":"Braton","rerolled":false}]\n',
+  );
+  await writeFile(
+    join(dataDir, "dates.json"),
+    `${JSON.stringify({ PC: ["2026_W28"], PS4: [], XB1: [], SWI: [] }, null, 2)}\n`,
+  );
+  await writeFile(
+    join(dataDir, "coverage.json"),
+    `${JSON.stringify({ platforms: { PC: { latestWeek: null, fileCount: 0, missingWeeks: [] } } }, null, 2)}\n`,
+  );
+
+  const report = await auditArchiveData({ dataDir });
+
+  assert.equal(report.findings.length, 1);
+  assert.equal(report.findings[0]?.severity, "error");
+  assert.match(report.findings[0]?.message ?? "", /coverage.json does not match/);
 });
 
 test("auditArchiveData reports invalid JSON without aborting duplicate checks", async () => {
@@ -65,6 +115,19 @@ test("auditArchiveData reports invalid JSON without aborting duplicate checks", 
   await writeFile(
     join(dataDir, "dates.json"),
     `${JSON.stringify({ PC: ["2026_W28", "2026_W28_20260707T050620Z"], PS4: [], XB1: [], SWI: [] }, null, 2)}\n`,
+  );
+  await writeFile(
+    join(dataDir, "coverage.json"),
+    `${JSON.stringify(
+      {
+        platforms: {
+          ...emptyCoverage().platforms,
+          PC: { latestWeek: "2026_W28", fileCount: 2, missingWeeks: [] },
+        },
+      },
+      null,
+      2,
+    )}\n`,
   );
 
   const report = await auditArchiveData({ dataDir });
@@ -87,6 +150,19 @@ test("auditArchiveData accepts valid unique archive data", async () => {
   await writeFile(
     join(dataDir, "dates.json"),
     `${JSON.stringify({ PC: ["2026_W28", "2026_W28_20260707T050620Z"], PS4: [], XB1: [], SWI: [] }, null, 2)}\n`,
+  );
+  await writeFile(
+    join(dataDir, "coverage.json"),
+    `${JSON.stringify(
+      {
+        platforms: {
+          ...emptyCoverage().platforms,
+          PC: { latestWeek: "2026_W28", fileCount: 2, missingWeeks: [] },
+        },
+      },
+      null,
+      2,
+    )}\n`,
   );
 
   const report = await auditArchiveData({ dataDir });

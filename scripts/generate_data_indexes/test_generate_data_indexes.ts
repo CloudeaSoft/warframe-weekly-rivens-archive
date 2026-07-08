@@ -8,7 +8,6 @@ import {
   buildCoverage,
   buildDatesIndex,
   writeDataIndexFiles,
-  type LastUpdated,
 } from "./generate_data_indexes.js";
 
 async function makeTempDataDir(): Promise<string> {
@@ -37,7 +36,7 @@ test("buildDatesIndex derives sorted platform keys from data files", async () =>
   });
 });
 
-test("buildCoverage summarizes platform files, missing weeks, and last update metadata", async () => {
+test("buildCoverage summarizes platform files and missing weeks", async () => {
   const dataDir = await makeTempDataDir();
   await writeFile(join(dataDir, "PC", "2021_W01_weeklyRivensPC.json"), "[]\n");
   await writeFile(join(dataDir, "PC", "2021_W03_weeklyRivensPC.json"), "[]\n");
@@ -45,34 +44,22 @@ test("buildCoverage summarizes platform files, missing weeks, and last update me
   await writeFile(join(dataDir, "PS4", "2020_W53_weeklyRivensPS4.json"), "[]\n");
   await writeFile(join(dataDir, "PS4", "2021_W02_weeklyRivensPS4.json"), "[]\n");
 
-  const coverage = await buildCoverage({
-    dataDir,
-    getLastUpdated: async (platform): Promise<LastUpdated> =>
-      platform === "PC"
-        ? { commit: "abc123", time: "2026-07-01T13:16:39Z" }
-        : { commit: null, time: null },
-  });
+  const coverage = await buildCoverage({ dataDir });
 
   assert.deepEqual(coverage.platforms.PC, {
     latestWeek: "2021_W03",
     fileCount: 3,
     missingWeeks: ["2021_W02"],
-    lastUpdatedCommit: "abc123",
-    lastUpdatedTime: "2026-07-01T13:16:39Z",
   });
   assert.deepEqual(coverage.platforms.PS4, {
     latestWeek: "2021_W02",
     fileCount: 2,
     missingWeeks: ["2021_W01"],
-    lastUpdatedCommit: null,
-    lastUpdatedTime: null,
   });
   assert.deepEqual(coverage.platforms.XB1, {
     latestWeek: null,
     fileCount: 0,
     missingWeeks: [],
-    lastUpdatedCommit: null,
-    lastUpdatedTime: null,
   });
 });
 
@@ -86,7 +73,6 @@ test("writeDataIndexFiles writes dates and coverage JSON", async () => {
     dataDir,
     datesPath,
     coveragePath,
-    getLastUpdated: async () => ({ commit: "def456", time: "2026-07-02T00:00:00Z" }),
   });
 
   assert.equal(
@@ -102,29 +88,21 @@ test("writeDataIndexFiles writes dates and coverage JSON", async () => {
             latestWeek: null,
             fileCount: 0,
             missingWeeks: [],
-            lastUpdatedCommit: "def456",
-            lastUpdatedTime: "2026-07-02T00:00:00Z",
           },
           PS4: {
             latestWeek: null,
             fileCount: 0,
             missingWeeks: [],
-            lastUpdatedCommit: "def456",
-            lastUpdatedTime: "2026-07-02T00:00:00Z",
           },
           XB1: {
             latestWeek: null,
             fileCount: 0,
             missingWeeks: [],
-            lastUpdatedCommit: "def456",
-            lastUpdatedTime: "2026-07-02T00:00:00Z",
           },
           SWI: {
             latestWeek: "2021_W01",
             fileCount: 1,
             missingWeeks: [],
-            lastUpdatedCommit: "def456",
-            lastUpdatedTime: "2026-07-02T00:00:00Z",
           },
         },
       },

@@ -437,22 +437,6 @@
         return Object.keys(state.dates).sort((a, b) => a.localeCompare(b));
       }
 
-      function formatDate(value) {
-        if (!value) {
-          return "Unknown update time";
-        }
-
-        const date = new Date(value);
-        if (Number.isNaN(date.getTime())) {
-          return value;
-        }
-
-        return date.toLocaleString(undefined, {
-          dateStyle: "medium",
-          timeStyle: "short",
-        });
-      }
-
       function setStatus(message, isError = false) {
         const status = document.querySelector("#status");
         status.textContent = message;
@@ -526,11 +510,11 @@
           meta.className = "meta";
           meta.textContent = `Latest: ${latestWeek || "Unknown"}`;
 
-          const updated = document.createElement("div");
-          updated.className = "meta";
-          updated.textContent = formatDate(coverage.lastUpdatedTime);
+          const missing = document.createElement("div");
+          missing.className = "meta";
+          missing.textContent = `Missing weeks: ${coverage.missingWeeks?.length || 0}`;
 
-          card.append(title, metric, meta, updated);
+          card.append(title, metric, meta, missing);
 
           if (latestWeek) {
             const link = document.createElement("a");

@@ -1,6 +1,5 @@
 import { existsSync } from "node:fs";
 import { mkdir, readdir, writeFile } from "node:fs/promises";
-import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -11,17 +10,10 @@ import {
   type Platform,
 } from "../fetch_latest_weekly_rivens/fetch_latest_weekly_rivens.js";
 
-export interface LastUpdated {
-  commit: string | null;
-  time: string | null;
-}
-
 export interface PlatformCoverage {
   latestWeek: string | null;
   fileCount: number;
   missingWeeks: string[];
-  lastUpdatedCommit: string | null;
-  lastUpdatedTime: string | null;
 }
 
 export type DatesIndex = Record<Platform, string[]>;
@@ -32,8 +24,6 @@ export interface Coverage {
 
 export interface BuildCoverageOptions {
   dataDir: string;
-  cwd?: string;
-  getLastUpdated?: (platform: Platform) => Promise<LastUpdated>;
 }
 
 export interface WriteDataIndexOptions extends BuildCoverageOptions {
@@ -157,46 +147,18 @@ async function scanPlatformCoverage(dataDir: string, platform: Platform): Promis
   return { fileCount: fileKeys.length, latestWeek, missingWeeks };
 }
 
-export async function lastUpdatedFromGit(cwd: string, platform: Platform): Promise<LastUpdated> {
-  const result = spawnSync(
-    "git",
-    ["log", "-1", "--format=%H%x00%cI", "--", `data/${platform}`],
-    {
-      cwd,
-      encoding: "utf8",
-    },
-  );
-
-  if (result.status !== 0 || result.stdout.trim() === "") {
-    return { commit: null, time: null };
-  }
-
-  const [commit, time] = result.stdout.trim().split("\0");
-  return {
-    commit: commit || null,
-    time: time || null,
-  };
-}
-
 export async function buildCoverage({
   dataDir,
-  cwd = process.cwd(),
-  getLastUpdated = (platform) => lastUpdatedFromGit(cwd, platform),
 }: BuildCoverageOptions): Promise<Coverage> {
   const platforms = {} as Record<Platform, PlatformCoverage>;
 
   for (const platform of VALID_PLATFORMS) {
-    const [coverage, lastUpdated] = await Promise.all([
-      scanPlatformCoverage(dataDir, platform),
-      getLastUpdated(platform),
-    ]);
+    const coverage = await scanPlatformCoverage(dataDir, platform);
 
     platforms[platform] = {
       latestWeek: coverage.latestWeek,
       fileCount: coverage.fileCount,
       missingWeeks: coverage.missingWeeks,
-      lastUpdatedCommit: lastUpdated.commit,
-      lastUpdatedTime: lastUpdated.time,
     };
   }
 
@@ -207,12 +169,10 @@ export async function writeDataIndexFiles({
   dataDir,
   datesPath = join(dataDir, "dates.json"),
   coveragePath = join(dataDir, "coverage.json"),
-  cwd = process.cwd(),
-  getLastUpdated,
 }: WriteDataIndexOptions): Promise<{ dates: DatesIndex; coverage: Coverage }> {
   const [dates, coverage] = await Promise.all([
     buildDatesIndex(dataDir),
-    buildCoverage({ dataDir, cwd, getLastUpdated }),
+    buildCoverage({ dataDir }),
   ]);
 
   await mkdir(dirname(datesPath), { recursive: true });
@@ -249,7 +209,6 @@ export async function run({
     dataDir: join(cwd, "data"),
     datesPath: join(cwd, "data", "dates.json"),
     coveragePath: join(cwd, "data", "coverage.json"),
-    cwd,
   });
 }
 

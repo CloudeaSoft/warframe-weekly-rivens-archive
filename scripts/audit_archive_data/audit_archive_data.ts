@@ -9,7 +9,11 @@ import {
   normalizeJsonText,
   type Platform,
 } from "../fetch_latest_weekly_rivens/fetch_latest_weekly_rivens.js";
-import { buildDatesIndex, type DatesIndex } from "../generate_data_indexes/generate_data_indexes.js";
+import {
+  buildCoverage,
+  buildDatesIndex,
+  type DatesIndex,
+} from "../generate_data_indexes/generate_data_indexes.js";
 
 export type FindingSeverity = "error" | "warning";
 
@@ -189,6 +193,33 @@ async function auditDatesIndex(dataDir: string): Promise<AuditFinding[]> {
   ];
 }
 
+async function auditCoverageIndex(dataDir: string): Promise<AuditFinding[]> {
+  const coveragePath = join(dataDir, "coverage.json");
+  if (!existsSync(coveragePath)) {
+    return [
+      {
+        severity: "error",
+        message: "coverage.json is missing.",
+        files: [formatPath(dataDir, coveragePath)],
+      },
+    ];
+  }
+
+  const actual = JSON5.parse(await readFile(coveragePath, "utf8"));
+  const expected = await buildCoverage({ dataDir });
+  if (JSON.stringify(actual) === JSON.stringify(expected)) {
+    return [];
+  }
+
+  return [
+    {
+      severity: "error",
+      message: "coverage.json does not match the archive files currently present under data/<platform>/.",
+      files: [formatPath(dataDir, coveragePath)],
+    },
+  ];
+}
+
 export async function auditArchiveData({
   dataDir,
 }: AuditArchiveDataOptions): Promise<AuditReport> {
@@ -197,6 +228,7 @@ export async function auditArchiveData({
     ...(await auditJsonPayloads(dataDir, files)),
     ...(await auditDuplicateWeekContent(dataDir, files)),
     ...(await auditDatesIndex(dataDir)),
+    ...(await auditCoverageIndex(dataDir)),
   ];
 
   return { findings };
