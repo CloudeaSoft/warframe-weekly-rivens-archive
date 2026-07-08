@@ -6,10 +6,11 @@
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "data:audit": "pnpm run build && node dist/scripts/audit_archive_data/audit_archive_data.js",
     "data:indexes": "pnpm run build && node dist/scripts/generate_data_indexes/generate_data_indexes.js",
     "fetch:latest": "pnpm run build && node dist/scripts/fetch_latest_weekly_rivens/fetch_latest_weekly_rivens.js",
     "fetch:wayback": "pnpm run build && node dist/scripts/fetch_from_wayback_machine/fetch_from_wayback_machine.js",
-    "test": "pnpm run build && node --test dist/scripts/fetch_latest_weekly_rivens/test_fetch_latest_weekly_rivens.js dist/scripts/fetch_from_wayback_machine/test_fetch_from_wayback_machine.js dist/scripts/generate_data_indexes/test_generate_data_indexes.js"
+    "test": "pnpm run build && node --test dist/scripts/audit_archive_data/test_audit_archive_data.js dist/scripts/fetch_latest_weekly_rivens/test_fetch_latest_weekly_rivens.js dist/scripts/fetch_from_wayback_machine/test_fetch_from_wayback_machine.js dist/scripts/generate_data_indexes/test_generate_data_indexes.js"
   },
   "dependencies": {
     "json5": "^2.2.3"

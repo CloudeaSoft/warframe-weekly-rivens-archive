@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: fetch-latest-weekly-rivens
@@ -45,9 +46,11 @@ jobs:
         run: pnpm run data:indexes
 
       - name: Commit data changes
+        id: commit-data
         run: |
           if [ -z "$(git status --porcelain data)" ]; then
             echo "No data changes to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -56,4 +59,45 @@ jobs:
           git add data
           commit_time="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
           git commit -m "ci(data): fetch latest weekly rivens at ${commit_time}"
+          commit_sha="$(git rev-parse HEAD)"
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+          echo "commit_sha=${commit_sha}" >> "$GITHUB_OUTPUT"
           git push
+
+      - name: Audit archived data
+        id: audit-data
+        if: steps.commit-data.outputs.committed == 'true'
+        continue-on-error: true
+        run: pnpm run data:audit -- --report archive-data-audit.md
+
+      - name: Add archive data audit summary
+        if: steps.commit-data.outputs.committed == 'true'
+        run: cat archive-data-audit.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open issue for suspicious archive data
+        if: steps.audit-data.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("node:fs");
+            const sha = "${{ steps.commit-data.outputs.commit_sha }}";
+            const shortSha = sha.slice(0, 7);
+            const report = fs.readFileSync("archive-data-audit.md", "utf8");
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Archive data review: suspicious data in ${shortSha}`,
+              body: [
+                `/oc review the archived Riven data committed in ${sha} with the following tasks:`,
+                "",
+                "1. Whether the new archive files look like valid official weekly Riven snapshots.",
+                "2. Whether same-week revisions are justified.",
+                "3. Whether the generated indexes match the data files.",
+                "",
+                report,
+              ].join("\n"),
+            });
+
+      - name: Fail on archive data audit findings
+        if: steps.audit-data.outcome == 'failure'
+        run: exit 1
