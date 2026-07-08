@@ -118,6 +118,35 @@ test("fetchAndStorePlatform skips unchanged latest file when dates index is stal
   ]);
 });
 
+test("fetchAndStorePlatform skips unchanged latest file when fetched riven rows are unsorted", async () => {
+  const { dataDir } = await makeTempRepo();
+  await writeFile(
+    join(dataDir, "PC", "2021_W01_weeklyRivensPC.json"),
+    normalizeJsonText(
+      JSON.stringify([
+        { itemType: "Rifle Riven Mod", compatibility: "Acceltra", rerolled: false },
+        { itemType: "Rifle Riven Mod", compatibility: "Braton", rerolled: true },
+      ]),
+    ),
+  );
+
+  const result = await fetchAndStorePlatform({
+    dataDir,
+    platform: "PC",
+    now: new Date(Date.UTC(2021, 0, 5, 12, 34, 56)),
+    fetchText: async () =>
+      JSON.stringify([
+        { itemType: "Rifle Riven Mod", compatibility: "Braton", rerolled: true },
+        { itemType: "Rifle Riven Mod", compatibility: "Acceltra", rerolled: false },
+      ]),
+  });
+
+  assert.equal(result.status, "unchanged");
+  assert.deepEqual(await readdir(join(dataDir, "PC")), [
+    "2021_W01_weeklyRivensPC.json",
+  ]);
+});
+
 test("fetchAndStorePlatform writes the current week when content changes", async () => {
   const { dataDir } = await makeTempRepo();
   await writeFile(

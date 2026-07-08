@@ -152,29 +152,8 @@ function normalizeOutputValue(value: unknown): unknown {
   return value;
 }
 
-function canonicalJsonValue(value: unknown): unknown {
-  if (Array.isArray(value)) {
-    return value.map(canonicalJsonValue);
-  }
-
-  if (isRecord(value)) {
-    const record = value;
-    return Object.fromEntries(
-      Object.keys(record)
-        .sort(compareStrings)
-        .map((key) => [key, canonicalJsonValue(record[key])]),
-    );
-  }
-
-  return value;
-}
-
 export function normalizeJsonText(text: string): string {
   return `${JSON.stringify(normalizeOutputValue(JSON5.parse(text)), null, 2)}\n`;
-}
-
-function canonicalJsonText(text: string): string {
-  return `${JSON.stringify(canonicalJsonValue(JSON5.parse(text)), null, 2)}\n`;
 }
 
 interface ParsedFileKey {
@@ -283,9 +262,8 @@ export async function fetchAndStorePlatform({
   if (latestKey !== null) {
     const latestPath = filePathForKey(dataDir, platform, latestKey);
     if (existsSync(latestPath)) {
-      const canonicalLatestText = canonicalJsonText(await readFile(latestPath, "utf8"));
-      const canonicalFetchedText = canonicalJsonText(fetchedText);
-      if (canonicalLatestText === canonicalFetchedText) {
+      const normalizedLatestText = normalizeJsonText(await readFile(latestPath, "utf8"));
+      if (normalizedLatestText === normalizedFetchedText) {
         return { status: "unchanged", platform, key: latestKey, filePath: latestPath };
       }
     }

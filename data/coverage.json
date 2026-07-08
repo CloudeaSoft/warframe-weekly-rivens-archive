@@ -2,7 +2,7 @@
   "platforms": {
     "PC": {
       "latestWeek": "2026_W28",
-      "fileCount": 86,
+      "fileCount": 84,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
@@ -302,12 +302,12 @@
         "2026_W25",
         "2026_W26"
       ],
-      "lastUpdatedCommit": "521034415718bc8fb8f980dfb8897bb94c441484",
-      "lastUpdatedTime": "2026-07-07T05:06:22Z"
+      "lastUpdatedCommit": "86329666df9afff743778a25aca47c7ea79be0bd",
+      "lastUpdatedTime": "2026-07-08T04:31:42Z"
     },
     "PS4": {
       "latestWeek": "2026_W28",
-      "fileCount": 57,
+      "fileCount": 55,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
@@ -634,12 +634,12 @@
         "2026_W25",
         "2026_W26"
       ],
-      "lastUpdatedCommit": "521034415718bc8fb8f980dfb8897bb94c441484",
-      "lastUpdatedTime": "2026-07-07T05:06:22Z"
+      "lastUpdatedCommit": "86329666df9afff743778a25aca47c7ea79be0bd",
+      "lastUpdatedTime": "2026-07-08T04:31:42Z"
     },
     "XB1": {
       "latestWeek": "2026_W28",
-      "fileCount": 54,
+      "fileCount": 53,
       "missingWeeks": [
         "2020_W02",
         "2020_W14",
@@ -968,8 +968,8 @@
         "2026_W25",
         "2026_W26"
       ],
-      "lastUpdatedCommit": "521034415718bc8fb8f980dfb8897bb94c441484",
-      "lastUpdatedTime": "2026-07-07T05:06:22Z"
+      "lastUpdatedCommit": "86329666df9afff743778a25aca47c7ea79be0bd",
+      "lastUpdatedTime": "2026-07-08T04:31:42Z"
     },
     "SWI": {
       "latestWeek": "2026_W28",
