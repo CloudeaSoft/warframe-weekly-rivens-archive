@@ -29,7 +29,9 @@ client. Each platform includes:
 - `missingWeeks`: ISO week keys missing between the first and latest archived
   weeks.
 
-## CDN access
+## Usage
+
+### CDN
 
 The `data` directory is deployed as a static Cloudflare Pages site:
 
@@ -53,6 +55,13 @@ https://warframe-weekly-rivens-archive.pages.dev/PC/2026_W28_weeklyRivensPC.json
 Supported platform keys are `PC`, `PS4`, `XB1`, and `SWI`. Use `dates.json` to discover available weeks, and `coverage.json` for latest-week and coverage metadata.
 
 Cloudflare Pages publishes `data` as the output directory, so files under `data/` are served from the site root. CORS is enabled for all files. `dates.json` and `coverage.json` use `Cache-Control: no-cache` so clients can see new weekly indexes after deployment; platform data files use long immutable caching because archived week files are content-stable.
+
+### NPM
+
+For a lightweight SDK wrapper, see [CloudeaSoft/warframe-weekly-rivens](https://github.com/CloudeaSoft/warframe-weekly-rivens).
+
+The package does not include archive data. It builds CDN URLs, fetches JSON from
+this archive, and returns the CDN payloads with conservative TypeScript types.
 
 ## Official data source
 
