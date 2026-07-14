@@ -88,3 +88,4 @@ Script details are documented in each linked README.
 This project stands on the shoulders of giants. Special thanks to the following open-source projects:
 
 - [rivens-json-browse-back-end](https://github.com/Kanjirito/rivens-json-browse-back-end) - Provided the historical data from `2019-03-25` to `2020-03-30`.
+- [GuangchenW](https://github.com/GuangchenW), who maintains [warframe riven tracker](https://warframeriventracker.onrender.com/) - Provided PC historical data from `2025_W41` to `2026_W29`.
