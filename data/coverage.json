@@ -1,8 +1,8 @@
 {
   "platforms": {
     "PC": {
-      "latestWeek": "2026_W29",
-      "fileCount": 104,
+      "latestWeek": "2026_W30",
+      "fileCount": 105,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
@@ -615,8 +615,8 @@
       ]
     },
     "XB1": {
-      "latestWeek": "2026_W29",
-      "fileCount": 54,
+      "latestWeek": "2026_W30",
+      "fileCount": 55,
       "missingWeeks": [
         "2020_W02",
         "2020_W14",
@@ -947,8 +947,8 @@
       ]
     },
     "SWI": {
-      "latestWeek": "2026_W29",
-      "fileCount": 56,
+      "latestWeek": "2026_W30",
+      "fileCount": 57,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
