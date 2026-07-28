@@ -1,0 +1,156 @@
+[
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Afentis",
+    "rerolled": false,
+    "avg": 45,
+    "stddev": 5,
+    "min": 40,
+    "max": 50,
+    "pop": 100,
+    "median": 45
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Afentis",
+    "rerolled": true,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 50,
+    "median": 40
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Akarius",
+    "rerolled": false,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 50,
+    "median": 50
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Arca Plasmor",
+    "rerolled": true,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 50,
+    "median": 40
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Boar",
+    "rerolled": false,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 50,
+    "median": 100
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Cyanex",
+    "rerolled": true,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Dragon Nikana",
+    "rerolled": true,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 50,
+    "median": 50
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Haalvu",
+    "rerolled": true,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 50,
+    "median": 100
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Hek",
+    "rerolled": true,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 100,
+    "median": 40
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Latron",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Nukor",
+    "rerolled": false,
+    "avg": 60,
+    "stddev": 0,
+    "min": 60,
+    "max": 60,
+    "pop": 50,
+    "median": 60
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Skiajati",
+    "rerolled": true,
+    "avg": 165,
+    "stddev": 0,
+    "min": 165,
+    "max": 165,
+    "pop": 50,
+    "median": 165
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Sybaris",
+    "rerolled": true,
+    "avg": 175,
+    "stddev": 0,
+    "min": 175,
+    "max": 175,
+    "pop": 50,
+    "median": 175
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Verglas",
+    "rerolled": true,
+    "avg": 300,
+    "stddev": 0,
+    "min": 300,
+    "max": 300,
+    "pop": 50,
+    "median": 300
+  }
+]
