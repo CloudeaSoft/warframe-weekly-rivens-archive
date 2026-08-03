@@ -40,6 +40,8 @@ The `data` directory is deployed as a static Cloudflare Pages site:
 - Dates index: https://warframe-weekly-rivens-archive.pages.dev/dates.json
 - Coverage index: https://warframe-weekly-rivens-archive.pages.dev/coverage.json
 
+If the `pages.dev` domain is not accessible (especially from mainland China), you can use the alternate domain https://warframe-weekly-rivens.cloudea.work/ instead. It serves the same content and also points to Cloudflare's servers.
+
 Archived weekly files are available by platform and ISO week key:
 
 ```text
@@ -58,7 +60,7 @@ Cloudflare Pages publishes `data` as the output directory, so files under `data/
 
 ### NPM
 
-For a lightweight SDK wrapper, see [CloudeaSoft/warframe-weekly-rivens](https://github.com/CloudeaSoft/warframe-weekly-rivens).
+For a lightweight SDK wrapper, see [warframe-weekly-rivens](https://github.com/CloudeaSoft/warframe-weekly-rivens).
 
 The package does not include archive data. It builds CDN URLs, fetches JSON from
 this archive, and returns the CDN payloads with conservative TypeScript types.
