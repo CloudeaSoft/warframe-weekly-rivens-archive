@@ -615,8 +615,8 @@
       ]
     },
     "XB1": {
-      "latestWeek": "2026_W32",
-      "fileCount": 57,
+      "latestWeek": "2026_W33",
+      "fileCount": 58,
       "missingWeeks": [
         "2020_W02",
         "2020_W14",
@@ -947,8 +947,8 @@
       ]
     },
     "SWI": {
-      "latestWeek": "2026_W32",
-      "fileCount": 59,
+      "latestWeek": "2026_W33",
+      "fileCount": 60,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",

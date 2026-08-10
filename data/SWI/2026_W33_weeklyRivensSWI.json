@@ -1,0 +1,90 @@
+[
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Arca Plasmor",
+    "rerolled": true,
+    "avg": 10,
+    "stddev": 0,
+    "min": 10,
+    "max": 10,
+    "pop": 50,
+    "median": 10
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Dual Ichor",
+    "rerolled": false,
+    "avg": 60,
+    "stddev": 0,
+    "min": 60,
+    "max": 60,
+    "pop": 50,
+    "median": 60
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Dual Ichor",
+    "rerolled": true,
+    "avg": 208.5,
+    "stddev": 141.5,
+    "min": 67,
+    "max": 350,
+    "pop": 100,
+    "median": 208.5
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Lesion",
+    "rerolled": false,
+    "avg": 5,
+    "stddev": 0,
+    "min": 5,
+    "max": 5,
+    "pop": 50,
+    "median": 5
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Nikana",
+    "rerolled": false,
+    "avg": 120,
+    "stddev": 0,
+    "min": 120,
+    "max": 120,
+    "pop": 50,
+    "median": 120
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Ocucor",
+    "rerolled": false,
+    "avg": 200,
+    "stddev": 0,
+    "min": 200,
+    "max": 200,
+    "pop": 50,
+    "median": 200
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Stug",
+    "rerolled": false,
+    "avg": 45,
+    "stddev": 0,
+    "min": 45,
+    "max": 45,
+    "pop": 50,
+    "median": 45
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Torid",
+    "rerolled": true,
+    "avg": 250,
+    "stddev": 0,
+    "min": 250,
+    "max": 250,
+    "pop": 50,
+    "median": 250
+  }
+]
