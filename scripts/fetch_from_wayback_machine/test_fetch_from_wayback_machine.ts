@@ -10,7 +10,6 @@ import {
   DEFAULT_PLATFORMS,
   DownloadError,
   VALID_PLATFORMS,
-  applyInsecureTls,
   downloadSnapshot,
   normalizeJsonPayload,
   outputPathForTimestamp,
@@ -39,28 +38,10 @@ test("script help runs without external requests dependency", () => {
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout ?? "", /Fetch historical Warframe weekly riven snapshots/);
   assert.match(result.stdout ?? "", /Defaults to PC PS4 XB1 SWI/);
-  assert.match(result.stdout ?? "", /--insecure/);
 });
 
-test("parseArgs supports insecure TLS option", () => {
-  const args = parseArgs(["--insecure", "PC"]);
-
-  assert.equal(args.insecure, true);
-  assert.deepEqual(args.platforms, ["PC"]);
-});
-
-test("applyInsecureTls disables TLS certificate verification", () => {
-  const original = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
-  try {
-    applyInsecureTls();
-    assert.equal(process.env.NODE_TLS_REJECT_UNAUTHORIZED, "0");
-  } finally {
-    if (original === undefined) {
-      delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
-    } else {
-      process.env.NODE_TLS_REJECT_UNAUTHORIZED = original;
-    }
-  }
+test("parseArgs rejects unknown options", () => {
+  assert.throws(() => parseArgs(["--unknown", "PC"]), /Unknown platform: --unknown/);
 });
 
 test("outputPathForTimestamp targets project data folder", () => {

@@ -23,14 +23,6 @@ To fetch specific platforms only, pass one or more platform suffixes:
 pnpm run build && node dist/scripts/fetch_from_wayback_machine/fetch_from_wayback_machine.js PC PS4
 ```
 
-If Node reports a local TLS certificate verification error, for example `CERTIFICATE_VERIFY_FAILED`, and you trust your current network, rerun with:
-
-```powershell
-pnpm run build && node dist/scripts/fetch_from_wayback_machine/fetch_from_wayback_machine.js --insecure
-```
-
-This disables HTTPS certificate verification for the script run. Prefer fixing the local certificate store or proxy certificate chain when possible.
-
 ## Behavior
 
 - Looks up archived snapshots for the official weekly Riven JSON endpoints.

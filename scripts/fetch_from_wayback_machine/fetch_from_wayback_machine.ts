@@ -35,7 +35,6 @@ export type FetchResponseFn = (url: string, params?: Record<string, string>) => 
 
 export interface ParsedArgs {
   help: boolean;
-  insecure: boolean;
   platforms: Platform[];
 }
 
@@ -66,10 +65,6 @@ export function projectDataPaths(cwd: string): { dataDir: string; datesPath: str
 
 export function targetUrlForPlatform(platform: Platform): string {
   return TARGET_URL_TEMPLATE.replace("{platform}", platform);
-}
-
-export function applyInsecureTls(): void {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 }
 
 function parseTimestamp(timestamp: string): Date {
@@ -407,8 +402,7 @@ function printHelp(): void {
 Fetch historical Warframe weekly riven snapshots from Wayback Machine.
 
 Options:
-  --insecure    Disable TLS certificate verification. Use only when a local proxy
-                or certificate store breaks HTTPS verification.
+  -h, --help    Show this help message.
 
 Platforms: ${VALID_PLATFORMS.join(" ")}
 Defaults to PC PS4 XB1 SWI
@@ -417,20 +411,17 @@ Defaults to PC PS4 XB1 SWI
 
 export function parseArgs(argv: string[]): ParsedArgs {
   if (argv.includes("--help") || argv.includes("-h")) {
-    return { help: true, insecure: false, platforms: [] };
+    return { help: true, platforms: [] };
   }
 
-  const insecure = argv.includes("--insecure");
-  const rest = argv.filter((arg) => arg !== "--insecure" && arg !== "--help" && arg !== "-h");
-
-  const platformList = rest.length === 0 ? [...DEFAULT_PLATFORMS] : [...new Set(rest)];
+  const platformList = argv.length === 0 ? [...DEFAULT_PLATFORMS] : [...new Set(argv)];
   for (const platform of platformList) {
     if (!VALID_PLATFORMS.includes(platform as Platform)) {
       throw new Error(`Unknown platform: ${platform}`);
     }
   }
 
-  return { help: false, insecure, platforms: platformList as Platform[] };
+  return { help: false, platforms: platformList as Platform[] };
 }
 
 export async function run({
@@ -452,11 +443,6 @@ export async function run({
   const resolvedDataDir = dataDir ?? projectDataPaths(cwd).dataDir;
   const resolvedDatesPath = datesPath ?? join(resolvedDataDir, "dates.json");
   await mkdir(resolvedDataDir, { recursive: true });
-
-  if (args.insecure) {
-    console.log("warning: TLS certificate verification is disabled");
-    applyInsecureTls();
-  }
 
   const sessionFetch = fetchResponse ?? createDefaultFetchResponse();
   const platforms = [...new Set(args.platforms)];
