@@ -1,0 +1,167 @@
+[
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": null,
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Burston",
+    "rerolled": false,
+    "avg": 35,
+    "stddev": 0,
+    "min": 35,
+    "max": 35,
+    "pop": 50,
+    "median": 35
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Burston",
+    "rerolled": true,
+    "avg": 150,
+    "stddev": 0,
+    "min": 150,
+    "max": 150,
+    "pop": 50,
+    "median": 150
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Caustacyst",
+    "rerolled": true,
+    "avg": 230,
+    "stddev": 0,
+    "min": 230,
+    "max": 230,
+    "pop": 50,
+    "median": 230
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Epitaph",
+    "rerolled": true,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 50,
+    "median": 30
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Ether Reaper",
+    "rerolled": false,
+    "avg": 5,
+    "stddev": 0,
+    "min": 5,
+    "max": 5,
+    "pop": 50,
+    "median": 5
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Ignis",
+    "rerolled": true,
+    "avg": 600,
+    "stddev": 0,
+    "min": 600,
+    "max": 600,
+    "pop": 50,
+    "median": 600
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Kohm",
+    "rerolled": false,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 50,
+    "median": 30
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Magistar",
+    "rerolled": true,
+    "avg": 250,
+    "stddev": 0,
+    "min": 250,
+    "max": 250,
+    "pop": 50,
+    "median": 250
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Nami Solo",
+    "rerolled": false,
+    "avg": 300,
+    "stddev": 0,
+    "min": 300,
+    "max": 300,
+    "pop": 50,
+    "median": 300
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Ocucor",
+    "rerolled": false,
+    "avg": 300,
+    "stddev": 0,
+    "min": 300,
+    "max": 300,
+    "pop": 50,
+    "median": 300
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Phenmor",
+    "rerolled": true,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 50,
+    "median": 30
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Sampotes",
+    "rerolled": false,
+    "avg": 2,
+    "stddev": 0,
+    "min": 2,
+    "max": 2,
+    "pop": 50,
+    "median": 2
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Sobek",
+    "rerolled": false,
+    "avg": 85,
+    "stddev": 65,
+    "min": 20,
+    "max": 150,
+    "pop": 100,
+    "median": 85
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Tenora",
+    "rerolled": false,
+    "avg": 5,
+    "stddev": 0,
+    "min": 5,
+    "max": 5,
+    "pop": 50,
+    "median": 5
+  }
+]
