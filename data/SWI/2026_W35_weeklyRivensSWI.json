@@ -1,0 +1,178 @@
+[
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Aeolak",
+    "rerolled": false,
+    "avg": 10,
+    "stddev": 0,
+    "min": 10,
+    "max": 10,
+    "pop": 100,
+    "median": 10
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Ambassador",
+    "rerolled": true,
+    "avg": 500,
+    "stddev": 0,
+    "min": 500,
+    "max": 500,
+    "pop": 100,
+    "median": 500
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Angstrum",
+    "rerolled": true,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 100,
+    "median": 40
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Boar",
+    "rerolled": true,
+    "avg": 300,
+    "stddev": 0,
+    "min": 300,
+    "max": 300,
+    "pop": 100,
+    "median": 300
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Broken War",
+    "rerolled": true,
+    "avg": 60,
+    "stddev": 0,
+    "min": 60,
+    "max": 60,
+    "pop": 100,
+    "median": 60
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Bubonico",
+    "rerolled": false,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 100,
+    "median": 50
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Dera",
+    "rerolled": true,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 100,
+    "median": 20
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Dual Toxocyst",
+    "rerolled": true,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 100,
+    "median": 20
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Hate",
+    "rerolled": false,
+    "avg": 65,
+    "stddev": 0,
+    "min": 65,
+    "max": 65,
+    "pop": 100,
+    "median": 65
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Kuva Shildeg",
+    "rerolled": true,
+    "avg": 55,
+    "stddev": 0,
+    "min": 55,
+    "max": 55,
+    "pop": 100,
+    "median": 55
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Magistar",
+    "rerolled": false,
+    "avg": 15,
+    "stddev": 0,
+    "min": 15,
+    "max": 15,
+    "pop": 100,
+    "median": 15
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Ocucor",
+    "rerolled": true,
+    "avg": 400,
+    "stddev": 0,
+    "min": 400,
+    "max": 400,
+    "pop": 100,
+    "median": 400
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Phantasma",
+    "rerolled": true,
+    "avg": 500,
+    "stddev": 0,
+    "min": 500,
+    "max": 500,
+    "pop": 100,
+    "median": 500
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Sobek",
+    "rerolled": false,
+    "avg": 60,
+    "stddev": 0,
+    "min": 60,
+    "max": 60,
+    "pop": 100,
+    "median": 60
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Tatsu",
+    "rerolled": true,
+    "avg": 60,
+    "stddev": 0,
+    "min": 60,
+    "max": 60,
+    "pop": 100,
+    "median": 60
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "War",
+    "rerolled": false,
+    "avg": 10,
+    "stddev": 0,
+    "min": 10,
+    "max": 10,
+    "pop": 100,
+    "median": 10
+  }
+]
