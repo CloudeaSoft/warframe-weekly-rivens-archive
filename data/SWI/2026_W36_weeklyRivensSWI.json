@@ -1,0 +1,189 @@
+[
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Akvasto",
+    "rerolled": false,
+    "avg": 10,
+    "stddev": 0,
+    "min": 10,
+    "max": 10,
+    "pop": 100,
+    "median": 10
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Boar",
+    "rerolled": true,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 100,
+    "median": 50
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Brakk",
+    "rerolled": false,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 100,
+    "median": 30
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Braton",
+    "rerolled": false,
+    "avg": 300,
+    "stddev": 0,
+    "min": 300,
+    "max": 300,
+    "pop": 100,
+    "median": 300
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Braton",
+    "rerolled": true,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 100,
+    "median": 100
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Coda Bassocyst",
+    "rerolled": false,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 100,
+    "median": 100
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Corinth",
+    "rerolled": true,
+    "avg": 150,
+    "stddev": 0,
+    "min": 150,
+    "max": 150,
+    "pop": 100,
+    "median": 150
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Daikyu",
+    "rerolled": false,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 100,
+    "median": 50
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Destreza",
+    "rerolled": false,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 100,
+    "median": 50
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Dual Coda Torxica",
+    "rerolled": true,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 100,
+    "median": 100
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Dual Toxocyst",
+    "rerolled": true,
+    "avg": 130,
+    "stddev": 0,
+    "min": 130,
+    "max": 130,
+    "pop": 100,
+    "median": 130
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Grimoire",
+    "rerolled": false,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 100,
+    "median": 30
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Lex",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 100,
+    "median": 20
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Okina",
+    "rerolled": true,
+    "avg": 90,
+    "stddev": 0,
+    "min": 90,
+    "max": 90,
+    "pop": 100,
+    "median": 90
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Sobek",
+    "rerolled": true,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 100,
+    "median": 30
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Torid",
+    "rerolled": true,
+    "avg": 101,
+    "stddev": 0,
+    "min": 101,
+    "max": 101,
+    "pop": 100,
+    "median": 101
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Vasto",
+    "rerolled": false,
+    "avg": 25,
+    "stddev": 0,
+    "min": 25,
+    "max": 25,
+    "pop": 100,
+    "median": 25
+  }
+]
