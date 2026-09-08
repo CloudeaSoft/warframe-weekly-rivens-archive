@@ -1,0 +1,167 @@
+[
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Acceltra",
+    "rerolled": true,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 100,
+    "median": 40
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Akarius",
+    "rerolled": true,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 100,
+    "median": 100
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Azothane",
+    "rerolled": false,
+    "avg": 25,
+    "stddev": 0,
+    "min": 25,
+    "max": 25,
+    "pop": 100,
+    "median": 25
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Bubonico",
+    "rerolled": false,
+    "avg": 75,
+    "stddev": 0,
+    "min": 75,
+    "max": 75,
+    "pop": 100,
+    "median": 75
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Burst Laser",
+    "rerolled": true,
+    "avg": 250,
+    "stddev": 0,
+    "min": 250,
+    "max": 250,
+    "pop": 100,
+    "median": 250
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Burston",
+    "rerolled": true,
+    "avg": 25,
+    "stddev": 0,
+    "min": 25,
+    "max": 25,
+    "pop": 100,
+    "median": 25
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Coda Bassocyst",
+    "rerolled": true,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 100,
+    "median": 100
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Dread",
+    "rerolled": true,
+    "avg": 80,
+    "stddev": 0,
+    "min": 80,
+    "max": 80,
+    "pop": 100,
+    "median": 80
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Hate",
+    "rerolled": true,
+    "avg": 210,
+    "stddev": 0,
+    "min": 210,
+    "max": 210,
+    "pop": 100,
+    "median": 210
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Nataruk",
+    "rerolled": false,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 100,
+    "median": 30
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Nataruk",
+    "rerolled": true,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 100,
+    "median": 20
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Okina",
+    "rerolled": false,
+    "avg": 110,
+    "stddev": 0,
+    "min": 110,
+    "max": 110,
+    "pop": 100,
+    "median": 110
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Sporothrix",
+    "rerolled": true,
+    "avg": 175,
+    "stddev": 0,
+    "min": 175,
+    "max": 175,
+    "pop": 100,
+    "median": 175
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Torid",
+    "rerolled": false,
+    "avg": 325,
+    "stddev": 0,
+    "min": 325,
+    "max": 325,
+    "pop": 100,
+    "median": 325
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Twin Kohmak",
+    "rerolled": false,
+    "avg": 70,
+    "stddev": 0,
+    "min": 70,
+    "max": 70,
+    "pop": 100,
+    "median": 70
+  }
+]
