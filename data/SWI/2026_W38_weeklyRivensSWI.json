@@ -1,0 +1,167 @@
+[
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Acceltra",
+    "rerolled": false,
+    "avg": 100,
+    "stddev": 0,
+    "min": 100,
+    "max": 100,
+    "pop": 50,
+    "median": 100
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Boar",
+    "rerolled": true,
+    "avg": 120,
+    "stddev": 0,
+    "min": 120,
+    "max": 120,
+    "pop": 50,
+    "median": 120
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Burston",
+    "rerolled": false,
+    "avg": 150,
+    "stddev": 0,
+    "min": 150,
+    "max": 150,
+    "pop": 50,
+    "median": 150
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Burston",
+    "rerolled": true,
+    "avg": 150,
+    "stddev": 0,
+    "min": 150,
+    "max": 150,
+    "pop": 50,
+    "median": 150
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Cedo",
+    "rerolled": false,
+    "avg": 15,
+    "stddev": 10,
+    "min": 5,
+    "max": 25,
+    "pop": 100,
+    "median": 15
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Dera",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Dual Kamas",
+    "rerolled": false,
+    "avg": 15,
+    "stddev": 0,
+    "min": 15,
+    "max": 15,
+    "pop": 50,
+    "median": 15
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Hate",
+    "rerolled": true,
+    "avg": 120,
+    "stddev": 0,
+    "min": 120,
+    "max": 120,
+    "pop": 50,
+    "median": 120
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Miter",
+    "rerolled": false,
+    "avg": 5,
+    "stddev": 0,
+    "min": 5,
+    "max": 5,
+    "pop": 50,
+    "median": 5
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Paris",
+    "rerolled": true,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 50,
+    "median": 40
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Sobek",
+    "rerolled": true,
+    "avg": 65,
+    "stddev": 0,
+    "min": 65,
+    "max": 65,
+    "pop": 50,
+    "median": 65
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Sporothrix",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Shotgun Riven Mod",
+    "compatibility": "Strun",
+    "rerolled": true,
+    "avg": 230,
+    "stddev": 0,
+    "min": 230,
+    "max": 230,
+    "pop": 50,
+    "median": 230
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Stug",
+    "rerolled": false,
+    "avg": 27.5,
+    "stddev": 12.5,
+    "min": 15,
+    "max": 40,
+    "pop": 100,
+    "median": 27.5
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "War",
+    "rerolled": true,
+    "avg": 60,
+    "stddev": 0,
+    "min": 60,
+    "max": 60,
+    "pop": 50,
+    "median": 60
+  }
+]
