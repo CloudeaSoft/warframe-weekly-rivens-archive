@@ -1,0 +1,101 @@
+[
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Burston",
+    "rerolled": true,
+    "avg": 110,
+    "stddev": 40,
+    "min": 70,
+    "max": 150,
+    "pop": 100,
+    "median": 110
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Harmony",
+    "rerolled": false,
+    "avg": 35,
+    "stddev": 0,
+    "min": 35,
+    "max": 35,
+    "pop": 50,
+    "median": 35
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Hema",
+    "rerolled": true,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 50,
+    "median": 40
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Kuva Bramma",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Lato",
+    "rerolled": false,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 50,
+    "median": 30
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Skana",
+    "rerolled": true,
+    "avg": 70,
+    "stddev": 0,
+    "min": 70,
+    "max": 70,
+    "pop": 50,
+    "median": 70
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Syam",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Tenet Livia",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Tonkor",
+    "rerolled": false,
+    "avg": 17.5,
+    "stddev": 7.5,
+    "min": 10,
+    "max": 25,
+    "pop": 100,
+    "median": 17.5
+  }
+]
