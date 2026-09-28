@@ -1,0 +1,167 @@
+[
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Amanata",
+    "rerolled": false,
+    "avg": 5,
+    "stddev": 0,
+    "min": 5,
+    "max": 5,
+    "pop": 50,
+    "median": 5
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Basmu",
+    "rerolled": false,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Burst Laser",
+    "rerolled": false,
+    "avg": 60,
+    "stddev": 0,
+    "min": 60,
+    "max": 60,
+    "pop": 50,
+    "median": 60
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Corufell",
+    "rerolled": true,
+    "avg": 70,
+    "stddev": 0,
+    "min": 70,
+    "max": 70,
+    "pop": 50,
+    "median": 70
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Dual Ichor",
+    "rerolled": true,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 50,
+    "median": 50
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Galatine",
+    "rerolled": true,
+    "avg": 30,
+    "stddev": 0,
+    "min": 30,
+    "max": 30,
+    "pop": 50,
+    "median": 30
+  },
+  {
+    "itemType": "Pistol Riven Mod",
+    "compatibility": "Gammacor",
+    "rerolled": true,
+    "avg": 15,
+    "stddev": 0,
+    "min": 15,
+    "max": 15,
+    "pop": 50,
+    "median": 15
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Haalvu",
+    "rerolled": false,
+    "avg": 32.5,
+    "stddev": 12.5,
+    "min": 20,
+    "max": 45,
+    "pop": 100,
+    "median": 32.5
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Ignis",
+    "rerolled": true,
+    "avg": 20,
+    "stddev": 0,
+    "min": 20,
+    "max": 20,
+    "pop": 50,
+    "median": 20
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Magistar",
+    "rerolled": false,
+    "avg": 40,
+    "stddev": 0,
+    "min": 40,
+    "max": 40,
+    "pop": 50,
+    "median": 40
+  },
+  {
+    "itemType": "Melee Riven Mod",
+    "compatibility": "Nami Solo",
+    "rerolled": false,
+    "avg": 10,
+    "stddev": 0,
+    "min": 10,
+    "max": 10,
+    "pop": 50,
+    "median": 10
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Nataruk",
+    "rerolled": true,
+    "avg": 50,
+    "stddev": 0,
+    "min": 50,
+    "max": 50,
+    "pop": 50,
+    "median": 50
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Paris",
+    "rerolled": true,
+    "avg": 10,
+    "stddev": 0,
+    "min": 10,
+    "max": 10,
+    "pop": 50,
+    "median": 10
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Torid",
+    "rerolled": false,
+    "avg": 225,
+    "stddev": 125,
+    "min": 100,
+    "max": 350,
+    "pop": 100,
+    "median": 225
+  },
+  {
+    "itemType": "Rifle Riven Mod",
+    "compatibility": "Torid",
+    "rerolled": true,
+    "avg": 167.5,
+    "stddev": 132.5,
+    "min": 35,
+    "max": 300,
+    "pop": 100,
+    "median": 167.5
+  }
+]
