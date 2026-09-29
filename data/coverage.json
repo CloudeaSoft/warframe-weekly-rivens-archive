@@ -1,8 +1,8 @@
 {
   "platforms": {
     "PC": {
-      "latestWeek": "2026_W39",
-      "fileCount": 114,
+      "latestWeek": "2026_W40",
+      "fileCount": 115,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
@@ -285,8 +285,8 @@
       ]
     },
     "PS4": {
-      "latestWeek": "2026_W39",
-      "fileCount": 66,
+      "latestWeek": "2026_W40",
+      "fileCount": 67,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
