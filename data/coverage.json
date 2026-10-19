@@ -1,8 +1,8 @@
 {
   "platforms": {
     "PC": {
-      "latestWeek": "2026_W42",
-      "fileCount": 117,
+      "latestWeek": "2026_W43",
+      "fileCount": 118,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
@@ -615,8 +615,8 @@
       ]
     },
     "XB1": {
-      "latestWeek": "2026_W42",
-      "fileCount": 67,
+      "latestWeek": "2026_W43",
+      "fileCount": 68,
       "missingWeeks": [
         "2020_W02",
         "2020_W14",
