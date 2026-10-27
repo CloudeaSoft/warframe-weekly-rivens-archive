@@ -1,8 +1,8 @@
 {
   "platforms": {
     "PC": {
-      "latestWeek": "2026_W43",
-      "fileCount": 118,
+      "latestWeek": "2026_W44",
+      "fileCount": 119,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
@@ -285,8 +285,8 @@
       ]
     },
     "PS4": {
-      "latestWeek": "2026_W43",
-      "fileCount": 70,
+      "latestWeek": "2026_W44",
+      "fileCount": 71,
       "missingWeeks": [
         "2020_W02",
         "2020_W15",
@@ -615,8 +615,8 @@
       ]
     },
     "XB1": {
-      "latestWeek": "2026_W43",
-      "fileCount": 68,
+      "latestWeek": "2026_W44",
+      "fileCount": 69,
       "missingWeeks": [
         "2020_W02",
         "2020_W14",
